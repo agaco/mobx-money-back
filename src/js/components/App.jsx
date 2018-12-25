@@ -1,8 +1,9 @@
 import React, {Fragment} from 'react';
 import { observer, inject } from "mobx-react";
 import data from '../data.json';
+import Profile from './ProfileTile';
 
-@inject('store')
+@inject('dataStore', 'uiStore')
 @observer
 export class App extends React.Component {
   constructor(props) {
@@ -12,15 +13,21 @@ export class App extends React.Component {
   }
 
   componentDidMount(){
-    const {users} = this.props.store;
-    this.props.store.addName(data)
+    const {users} = this.props.dataStore;
+    this.props.dataStore.addName(data)
   }
 
   renderLeeds() {
-    const {users} = this.props.store;
-    console.log(users)
-    const renderData = users.map(item => {
-        return item.user.name
+    const { dataStore } = this.props;
+    console.log(dataStore)
+    const renderData = dataStore.users.map(item => {
+        return (
+          <Profile 
+          name={item.user.name}
+          company={item.user.company}
+          invoices={item.unpaid_invoices}
+          />
+        )
       })
 
     return renderData;  
