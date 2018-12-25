@@ -26,6 +26,7 @@ export class App extends React.Component {
           name={item.user.name}
           company={item.user.company}
           invoices={item.unpaid_invoices}
+          id={item.user.id}
           />
         )
       })
@@ -36,15 +37,14 @@ export class App extends React.Component {
     render() {
       const renderLeeds = this.renderLeeds();
       return (
-        <Fragment>
-          <div className='header profile'>
-            <form>
-            <input type='button' value='click'/>
-            <input type='text' placeholder='jjjjj'/>
-            </form>
-          </div>
-        {renderLeeds}
-        </Fragment>
+        <div className='profiles'>
+        <section className='profiles-list'>
+          {renderLeeds}
+        </section>
+        <section className='profiles-details'>
+          <p>display here details</p>
+        </section>
+        </div>
       );
     }
   }

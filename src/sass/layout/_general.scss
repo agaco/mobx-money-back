@@ -2,11 +2,20 @@ body {
     background: #ffffff;
 
 }
-.header {
-    background:pink;
-    height: 95px;
-    margin-bottom: -60px;
+.profiles {
+    display: flex;
+    border: 1px solid red;
+    flex-direction: row;
+    &-list {
+        flex: 1;
+        transition: all .3s ease-out;
+    }
+    &-details {
+        flex-basis: 60%;
+        transition: all .3s ease-out;
+    }
 }
+
  
 .profile {
     &-wrapper {
@@ -17,7 +26,6 @@ body {
         flex-direction: column;
         justify-content: flex-start;   
         align-items: center; 
-        max-width: 550px;
         margin: 0 auto;
         @include respond-to(md) {
             margin: 0 20px;

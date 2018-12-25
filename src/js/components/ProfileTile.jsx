@@ -11,17 +11,29 @@ export class ProfileTile extends React.Component {
     // this.renderUsersComments = this.renderUsersComments.bind(this);
   }
 
+  displayDetails = () => {
+    const {uiStore, id} = this.props;
+
+    uiStore.displayDetails(id);
+  }
 
   render() {
-    const { name, company } = this.props;
+    const { 
+      id,
+      name,
+      company,
+      uiStore,
+    } = this.props;
+
     return (
       <div className='profile-wrapper'>
         <p>{name}</p>
         <p>{company}</p>
+        <p>{id}</p>
         <Text 
-        text='jhjhjhjhjhjh'
-        onClick={() => console.log("hiuyuiyu") }/>
-      }}
+        text='click'
+        onClick={() => this.displayDetails()}/>
+        {uiStore.displayProfile && uiStore.displayProfileId === id ? <p>show</p> : null}
       </div>
       );
     }
