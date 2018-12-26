@@ -1,7 +1,9 @@
 import React, {Fragment} from 'react';
 import { observer, inject } from "mobx-react";
-import data from '../data.json';
+import { toJS } from 'mobx';
+import data_set from '../data.json';
 import Profile from './ProfileTile';
+import ProfileDetails from './ProfileDetails';
 
 @inject('dataStore', 'uiStore')
 @observer
@@ -13,13 +15,12 @@ export class App extends React.Component {
   }
 
   componentDidMount(){
-    const {users} = this.props.dataStore;
-    this.props.dataStore.addName(data)
+    const { dataStore } = this.props;
+    dataStore.addName(data_set)
   }
 
   renderLeeds() {
     const { dataStore } = this.props;
-    console.log(dataStore)
     const renderData = dataStore.users.map(item => {
         return (
           <Profile 
@@ -33,16 +34,18 @@ export class App extends React.Component {
 
     return renderData;  
   }
-
     render() {
+      const { uiStore, dataStore } = this.props;
       const renderLeeds = this.renderLeeds();
+      const renderDetails = uiStore.displayProfile && uiStore.displayProfileId !=null ? <ProfileDetails/> : null;
+
       return (
         <div className='profiles'>
         <section className='profiles-list'>
           {renderLeeds}
         </section>
-        <section className='profiles-details'>
-          <p>display here details</p>
+        <section className={`profiles-details ${uiStore.displayProfile && uiStore.displayProfileId !=null ? '' : 'hidden'}`}>
+          {renderDetails}
         </section>
         </div>
       );

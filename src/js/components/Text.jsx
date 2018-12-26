@@ -18,11 +18,7 @@ const Text = ({
 
 Text.propTypes = {
   className: PropTypes.string,
-  sign: PropTypes.string,
-  type: PropTypes.string,
-  limit: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 Text.defaultProps = {
   className: '',

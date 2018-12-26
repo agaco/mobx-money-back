@@ -1,8 +1,9 @@
 import React from 'react';
 import { observer, inject } from "mobx-react";
+import { toJS } from 'mobx';
 import Text from './Text';
 
-@inject('uiStore')
+@inject('uiStore', 'dataStore')
 @observer
 export class ProfileTile extends React.Component {
   constructor(props) {
@@ -12,9 +13,11 @@ export class ProfileTile extends React.Component {
   }
 
   displayDetails = () => {
-    const {uiStore, id} = this.props;
-
+    const {uiStore, id, dataStore} = this.props;
+    
     uiStore.displayDetails(id);
+    // console.log(uiStore.displayProfileId)
+    // console.log(toJS(dataStore.users))
   }
 
   render() {
@@ -29,11 +32,10 @@ export class ProfileTile extends React.Component {
       <div className='profile-wrapper'>
         <p>{name}</p>
         <p>{company}</p>
-        <p>{id}</p>
         <Text 
+        className='btn btn--display'
         text='click'
         onClick={() => this.displayDetails()}/>
-        {uiStore.displayProfile && uiStore.displayProfileId === id ? <p>show</p> : null}
       </div>
       );
     }

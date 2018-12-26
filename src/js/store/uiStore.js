@@ -1,4 +1,4 @@
-import { observable, action, autorun } from "mobx";
+import { observable, action, autorun, toJS } from "mobx";
 
 class UIstore {
   
@@ -11,8 +11,9 @@ class UIstore {
   }
 
   @action displayDetails(data) {
-    this.displayProfile = !this.displayProfile
+    this.displayProfile = true
     this.displayProfileId = data
+    console.log(this.displayProfileId)
   }
 
 }
@@ -21,5 +22,5 @@ const uiStore = window.store = new UIstore
 export default uiStore;
 
 autorun(() => {
-  console.log(uiStore)
+  console.log(toJS(uiStore.displayProfileId))
 });

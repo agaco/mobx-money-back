@@ -17,7 +17,6 @@ export class Comment extends React.Component {
       const { imgSrc, comment, name, date, className} = this.props;
       return (
         <div className={className}>
-          <Img src={imgSrc} className='profile-photo'/>
           <div className='comment-wrapper'>
             <p className='comment-name'>{name}</p>
             <p className='comment-date'>{date}d</p>
