@@ -13,11 +13,9 @@ export class ProfileTile extends React.Component {
   }
 
   displayDetails = () => {
-    const {uiStore, id, dataStore} = this.props;
-    
+    const {uiStore, id} = this.props;
+
     uiStore.displayDetails(id);
-    // console.log(uiStore.displayProfileId)
-    // console.log(toJS(dataStore.users))
   }
 
   render() {
@@ -30,8 +28,9 @@ export class ProfileTile extends React.Component {
 
     return (
       <div className='profile-wrapper'>
-        <p>{name}</p>
-        <p>{company}</p>
+        <Text text={name}/>
+        <Text text={company}/>
+        <Text text='this company has x unpaid invoices'/>
         <Text 
         className='btn btn--display'
         text='click'
