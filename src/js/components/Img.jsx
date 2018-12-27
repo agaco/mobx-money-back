@@ -5,9 +5,10 @@ const Img = ({
   className, 
   alt, 
   src,
+  onClick,
 }) => (
   <Fragment>
-    <img className={className} src={src} alt={alt}/>
+    <img onClick={onClick} className={className} src={src} alt={alt}/>
   </Fragment>    
 );
 

@@ -7,13 +7,17 @@ class UIstore {
   @observable displayProfileId = null;
 
   @action loader(data) {
-    this.isLoading = data
+    this.isLoading = data;
   }
 
   @action displayDetails(data) {
-    this.displayProfile = true
-    this.displayProfileId = data
-    console.log(this.displayProfileId)
+    this.displayProfile = true;
+    this.displayProfileId = data;
+  }
+
+  @action hideDetails() {
+    this.displayProfile = false;
+    this.displayProfileId = null;
   }
 
 }

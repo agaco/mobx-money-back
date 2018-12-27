@@ -26,7 +26,7 @@ export class App extends React.Component {
           <Profile 
           name={item.user.name}
           company={item.user.company}
-          invoices={item.unpaid_invoices}
+          invoices={item.invoices}
           id={item.user.id}
           />
         )

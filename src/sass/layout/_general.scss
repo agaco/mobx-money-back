@@ -13,6 +13,9 @@ body {
     &-details {
         flex-basis: 60%;
         transition: all .3s ease-out;
+        position: relative;
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -45,6 +48,14 @@ body {
     &--display {
         border: 1px solid #000;
     }
+    &-close {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        align-self: flex-end;
+        padding: 4px 8px;
+        cursor: pointer;
+    }
 }
 
 .invoices-list {
@@ -52,5 +63,8 @@ body {
     &--item {
         border: 1px solid grey;
         padding: 10px 5px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
     }
 }
