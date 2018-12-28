@@ -7,7 +7,6 @@ require("babel-register");
 
 module.exports = merge(common, {
     mode: 'development',
-    devtool: 'source-map',
     output: {
         publicPath: '/dist',
         path: path.resolve(__dirname, "dist"),
@@ -22,5 +21,4 @@ module.exports = merge(common, {
         open: true,
         openPage: 'dist/index.html'  
     },
-    watch: true,
 })

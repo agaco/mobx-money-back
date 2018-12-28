@@ -7,20 +7,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
 module.exports = {
-    mode: 'development',
     devtool: 'source-map',
     entry: { main: './src/js/index.jsx' },
-    devServer: {
-        contentBase: path.resolve(__dirname, "dist/"),
-        compress: true,
-        port: 9000,
-        hot: true,
-        index: 'index.html',
-        open: true,
-        openPage: 'dist/index.html'  
-    },
-    watch: true,
-     
+    watch: true, 
     module: {
         rules: [
           {

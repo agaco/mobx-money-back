@@ -24,6 +24,7 @@ export class App extends React.Component {
     const renderData = dataStore.users.map(item => {
         return (
           <Profile 
+          key={item.user.id}
           name={item.user.name}
           company={item.user.company}
           invoices={item.invoices}
