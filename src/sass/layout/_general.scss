@@ -65,12 +65,13 @@ body {
 }
 
 .invoices-list {
-    border: 1px solid grey;
     &--item {
         border: 1px solid grey;
         padding: 10px 5px;
         display: flex;
         flex-direction: column;
         position: relative;
+        border-radius: 10px;
+        margin: 10px 0;
     }
 }

@@ -37,7 +37,7 @@ export class ProfileDetails extends React.Component {
     const oneDay = 24*60*60*1000;
     const checkIfInvoiceIsOverdue = currentDate.getTime() - (new Date(invoiceCreationDate).getTime() + overdueDate*oneDay)
 
-    return Math.floor(checkIfInvoiceIsOverdue/oneDay) > 0 ? Math.floor(checkIfInvoiceIsOverdue/oneDay) : null
+    return Math.floor(checkIfInvoiceIsOverdue/oneDay) > 0 ? `${Math.floor(checkIfInvoiceIsOverdue / oneDay)} days` : null
   }
 
   renderChangeStatusBtn = (id, payment_status) => {
@@ -53,18 +53,18 @@ export class ProfileDetails extends React.Component {
   renderUnpaidInvoices = (data) => {
     const { dataStore, uiStore } = this.props;
 
-    const item = data.invoices;
-    console.log(toJS(data))
-    return item.map((item, index) => {
+    const invoices = data.invoices;
+
+    return invoices.map((item, index) => {
         const overdue = this.countInvoiceOverdue(item.created_at, item.due_time)
       return (
         <div key={index} className='invoices-list--item'>
-          <p>{`Invoice number: ${item.number}`}</p>
-          <p>{`Status: ${item.payment_status ? 'paid' : 'unpaid'} `} {this.renderChangeStatusBtn(item.number, item.payment_status)}</p> 
-          <p>{`Amoint: ${item.amount} ${item.currency}`}</p>
-          <p>{`Created at: ${new Date(item.created_at).toDateString()}`}</p>
-          <p>{`Due time: ${item.due_time} days`}</p>
-          <p>{`Overdue: ${overdue != null ? overdue : ''} ${overdue != null ? 'days' : 'no'} `}</p>
+          <p><strong>Invoice number: </strong>{`${item.number}`}</p>
+          <p><strong>Payment status: </strong>{`${item.payment_status ? 'paid' : 'unpaid'} `} {this.renderChangeStatusBtn(item.number, item.payment_status)}</p> 
+          <p><strong>Sum: </strong> {`${item.amount} ${item.currency}`}</p>
+          <p><strong>Date of issue: </strong>{`${new Date(item.created_at).toDateString()}`}</p>
+          <p><strong>Due time: </strong>{`${item.due_time} days`}</p>
+          <p><strong>Overdue: </strong>{`${overdue != null && !item.payment_status ? overdue : ''}`}</p>
           <p>{item.comment}</p>
         </div>
         
