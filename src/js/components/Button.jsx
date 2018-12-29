@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Button = ({
   className, 
   onClick, 
-  sign,
+  label,
   type,
   disabled,
 }) => (
@@ -16,7 +16,7 @@ const Button = ({
     type={type} 
     disabled={disabled}
     >
-    { sign }
+    { label }
   </button>
 );
 

@@ -1,5 +1,6 @@
 const path = require('path');
 require("babel-register");
+const autoprefixer = require('autoprefixer');
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -29,11 +30,24 @@ module.exports = {
           },
         {
             test: /\.scss$/,
-            use: ExtractTextPlugin.extract(
-              {
-                fallback: 'style-loader',
-                use: ['css-loader', 'sass-loader']
-              })
+            use: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    url: false,
+                  },
+                },
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: () => [autoprefixer],
+                  },
+                },
+                'sass-loader',
+              ],
+            }),
           }
         ],
       },
