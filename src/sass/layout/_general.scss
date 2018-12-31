@@ -6,6 +6,8 @@ body {
     display: flex;
     border: 1px solid red;
     flex-direction: row;
+    width: 80%;
+    margin: 0 auto;
     &-list {
         flex: 1;
         transition: all .3s ease-out;
@@ -61,6 +63,12 @@ body {
         align-self: flex-end;
         padding: 4px 8px;
         cursor: pointer;
+    }
+    &--status_paid {
+        background-color: lightslategrey;
+        padding: 2px 8px;
+        border: none;
+        margin: 0;
     }
 }
 

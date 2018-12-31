@@ -24,6 +24,7 @@ export class ProfileTile extends React.Component {
       name,
       company,
       uiStore,
+      dataStore
     } = this.props;
 
     return (
@@ -31,6 +32,7 @@ export class ProfileTile extends React.Component {
         <Text text={name}/>
         <Text text={company}/>
         <Text text='this company has x unpaid invoices'/>
+        <p>{dataStore.unpaidInvoices}</p>
         <Text 
         className='btn btn--display'
         text='click'

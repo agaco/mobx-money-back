@@ -11,7 +11,10 @@ import Button from './Button';
 export class ProfileDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { };
+    this.state = {
+      filter_paid: true,
+      filter_unpaid: true,
+     };
     this.renderDetails = this.renderDetails.bind(this);
   }
 
@@ -21,7 +24,7 @@ export class ProfileDetails extends React.Component {
   }
 
   renderDetails() {
-    const { dataStore, uiStore } = this.props;
+    const { uiStore } = this.props;
 
       const filtered = this.props.dataStore.users.filter(item => {
         return item.user.id === uiStore.displayProfileId 
@@ -46,16 +49,29 @@ export class ProfileDetails extends React.Component {
     return (
       payment_status
       ? null
-      : <Button label={"click"} onClick={() => dataStore.changeInvStatus(uiStore.displayProfileId, id)}/>
+      : <Button className='btn btn--status_paid' label={"Change status"} onClick={() => dataStore.changeInvStatus(uiStore.displayProfileId, id)}/>
     )
   };
 
   renderUnpaidInvoices = (data) => {
-    const { dataStore, uiStore } = this.props;
+    const { filter_paid, filter_unpaid } = this.state;
 
-    const invoices = data.invoices;
+    let invoices = null;
+    
+    if (filter_paid && !filter_unpaid) {
+      invoices =  data.invoices.filter(item => item.payment_status === false)
+    } 
+    if (!filter_paid && filter_unpaid) {
+      invoices =  data.invoices.filter(item => item.payment_status === true)
+    } 
 
-    return invoices.map((item, index) => {
+    if (filter_paid && filter_unpaid) {
+      invoices =  data.invoices
+    } 
+
+    return (
+      invoices !=null
+      ? invoices.map((item, index) => {
         const overdue = this.countInvoiceOverdue(item.created_at, item.due_time)
       return (
         <div key={index} className='invoices-list--item'>
@@ -69,13 +85,42 @@ export class ProfileDetails extends React.Component {
         </div>
         
       )
-    })
+    }) : null
+    )
+  }
+  handleInputChange = (event) => {
+    const target = event.target;
+    const type = target.name === 'paid' ? 'filter_paid' : 'filter_unpaid';
+    this.setState({[type]: !this.state[type]})
+  }
+
+  renderFilters = () => {
+    return (
+      <form>
+      <label>
+        Unpaid: 
+        <input
+          name="unpaid"
+          type="checkbox"
+          checked={this.state.filter_unpaid}
+          onChange={this.handleInputChange} />
+      </label>
+      <label>
+      Paid: 
+      <input
+        name="paid"
+        type="checkbox"
+        checked={this.state.filter_paid}
+        onChange={this.handleInputChange} />
+    </label>
+    </form>    )
   }
 
   render() {
     const { id } = this.props;
 
     const render = this.renderDetails();
+    const filter = this.renderFilters();
     const renderInvoices = this.renderUnpaidInvoices(render);
     return (
       <Fragment>
@@ -83,6 +128,7 @@ export class ProfileDetails extends React.Component {
         <Img src={close} className='btn-close' onClick={() => this.closeDetails()}/>
         <Text text={render != null ? render.user.name : null}/>
         <Text text={render.user.company}/>
+        {filter}
         <section className='invoices-list'>
           {renderInvoices}
         </section>

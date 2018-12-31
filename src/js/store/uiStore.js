@@ -26,5 +26,5 @@ const uiStore = window.store = new UIstore
 export default uiStore;
 
 autorun(() => {
-  console.log(toJS(uiStore.displayProfileId))
+  // console.log(toJS(uiStore.displayProfileId))
 });
