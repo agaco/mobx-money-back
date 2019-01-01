@@ -93,7 +93,7 @@
                 "number": "FV/jhfhgfgh",
                 "due_time" : 10,
                 "amount" : 230.00,
-                "payment_status" : false,
+                "payment_status" : true,
                 "currency": "PLN",
                 "comment": "Lorem ipsum iuuyui"
             }

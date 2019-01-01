@@ -34,5 +34,5 @@ export default store;
 
 autorun(
   () => {
-  // console.log(toJS(store.users))
+  console.log(toJS(store.users))
 });
