@@ -35,7 +35,7 @@ export class ProfileTile extends React.Component {
         <p>{dataStore.unpaidInvoices}</p>
         <Text 
         className='btn btn--display'
-        text='click'
+        text='display invoices list'
         onClick={() => this.displayDetails()}/>
       </div>
       );

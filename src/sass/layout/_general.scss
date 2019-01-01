@@ -4,10 +4,13 @@ body {
 }
 .profiles {
     display: flex;
-    border: 1px solid red;
     flex-direction: row;
     width: 80%;
     margin: 0 auto;
+    @include respond-to(sm) {
+        width: 100%;
+        flex-direction: column;
+    }
     &-list {
         flex: 1;
         transition: all .3s ease-out;
@@ -22,6 +25,25 @@ body {
             width: 60px;
             height: 60px;
             align-self: center;
+        }
+        .header {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-self: self-start;
+            align-items: center;
+            margin: 20px;
+            &--wrap {
+                display: flex;
+                flex-direction: column;
+                margin-left: 15px;
+            }
+        }
+        .filters {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 20px;
         }
     }
 
@@ -54,7 +76,7 @@ body {
     border-radius: 3px;
     cursor: pointer;
     &--display {
-        border: 1px solid #000;
+       
     }
     &-close {
         width: 30px;
@@ -74,12 +96,16 @@ body {
 
 .invoices-list {
     &--item {
-        border: 1px solid grey;
-        padding: 10px 5px;
+        padding: 20px;
         display: flex;
         flex-direction: column;
         position: relative;
         border-radius: 10px;
         margin: 10px 0;
+        background: aliceblue;
+        box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 2px 1px 1px 2px rgba(0, 0, 0, 0.14), 2px 2px 1px -1px rgba(0, 0, 0, 0.12);
+        p {
+            line-height: 27px;
+        }
     }
 }

@@ -81,6 +81,7 @@ export class ProfileDetails extends React.Component {
           <p><strong>Date of issue: </strong>{`${new Date(item.created_at).toDateString()}`}</p>
           <p><strong>Due time: </strong>{`${item.due_time} days`}</p>
           <p><strong>Overdue: </strong>{`${overdue != null && !item.payment_status ? overdue : ''}`}</p>
+          <p><strong>Comments: </strong></p>
           <p>{item.comment}</p>
         </div>
         
@@ -96,19 +97,22 @@ export class ProfileDetails extends React.Component {
 
   renderFilters = () => {
     return (
-      <form>
-      <label>
+      <form className='filters'>
+      <p>Use filters to get list of: </p>
+      <label for='unpaid'>
         Unpaid: 
         <input
           name="unpaid"
+          id="unpaid"
           type="checkbox"
           checked={this.state.filter_unpaid}
           onChange={this.handleInputChange} />
       </label>
-      <label>
+      <label for='paid'>
       Paid: 
       <input
         name="paid"
+        id="paid"
         type="checkbox"
         checked={this.state.filter_paid}
         onChange={this.handleInputChange} />
@@ -124,10 +128,14 @@ export class ProfileDetails extends React.Component {
     const renderInvoices = this.renderUnpaidInvoices(render);
     return (
       <Fragment>
-        <Img src={render.user.photo} className='logo'/>
         <Img src={close} className='btn-close' onClick={() => this.closeDetails()}/>
-        <Text text={render != null ? render.user.name : null}/>
-        <Text text={render.user.company}/>
+        <div className='header'>
+          <Img src={render.user.photo} className='logo'/>
+          <div className='header--wrap'>
+            <Text text={render != null ? render.user.name : null}/>
+            <Text text={render.user.company}/>
+          </div>
+        </div>
         {filter}
         <section className='invoices-list'>
           {renderInvoices}

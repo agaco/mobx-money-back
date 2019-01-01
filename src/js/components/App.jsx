@@ -4,6 +4,7 @@ import { toJS } from 'mobx';
 import data_set from '../data.json';
 import Profile from './ProfileTile';
 import ProfileDetails from './ProfileDetails';
+import Text from './Text';
 
 @inject('dataStore', 'uiStore')
 @observer
@@ -41,14 +42,17 @@ export class App extends React.Component {
       const renderDetails = uiStore.displayProfile && uiStore.displayProfileId !=null ? <ProfileDetails/> : null;
 
       return (
-        <div className='profiles'>
-        <section className='profiles-list'>
-          {renderLeeds}
-        </section>
-        <section className={`profiles-details ${uiStore.displayProfile && uiStore.displayProfileId !=null ? '' : 'hidden'}`}>
-          {renderDetails}
-        </section>
-        </div>
+        <Fragment>
+        <Text className='profiles' text='this is app'/>
+          <div className='profiles'>
+          <section className='profiles-list'>
+            {renderLeeds}
+          </section>
+          <section className={`profiles-details ${uiStore.displayProfile && uiStore.displayProfileId !=null ? '' : 'hidden'}`}>
+            {renderDetails}
+          </section>
+          </div>
+        </Fragment>
       );
     }
   }
