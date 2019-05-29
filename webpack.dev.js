@@ -1,7 +1,7 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
-require("babel-register");
+// require("babel-register");
 
 
 
@@ -19,6 +19,6 @@ module.exports = merge(common, {
         hot: true,
         index: 'index.html',
         open: true,
-        openPage: 'dist/index.html'  
+        openPage: 'dist/index.html'
     },
 })
