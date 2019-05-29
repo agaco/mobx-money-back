@@ -1,9 +1,15 @@
-import { observable, action, autorun, toJS } from "mobx";
+// eslint-disable-next-line prop-types
+import {
+  observable,
+  action,
+  // autorun,
+} from 'mobx';
 
 class UIstore {
-  
   @observable isLoading = false;
+
   @observable displayProfile = false;
+
   @observable displayProfileId = null;
 
   @action loader(data) {
@@ -19,12 +25,13 @@ class UIstore {
     this.displayProfile = false;
     this.displayProfileId = null;
   }
-
 }
 
-const uiStore = window.store = new UIstore
+// eslint-disable-next-line no-multi-assign
+const uiStore = window.store = new UIstore();
+
 export default uiStore;
 
-autorun(() => {
-  // console.log(toJS(uiStore.displayProfileId))
-});
+// autorun(() => {
+//   // console.log(toJS(uiStore.displayProfileId))
+// });

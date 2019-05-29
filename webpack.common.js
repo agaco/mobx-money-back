@@ -62,7 +62,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin({filename: 'style.css'}),
+    new ExtractTextPlugin({ filename: 'style.css' }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       inject: false,
